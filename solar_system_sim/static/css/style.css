@@ -1,0 +1,51 @@
+/* static/css/style.css */
+:root { --accent: #00f2ff; --bg: rgba(10, 15, 25, 0.9); }
+body { margin: 0; background: #000; color: white; font-family: 'Space Grotesk', sans-serif; overflow: hidden; }
+
+/* Panels */
+.panel {
+    position: absolute; background: var(--bg); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1); padding: 20px; z-index: 10;
+    transition: transform 0.4s ease;
+}
+
+.left { top: 20px; left: 20px; width: 280px; border-radius: 15px; }
+.right { top: 20px; right: 20px; width: 280px; border-radius: 15px; }
+
+/* Data Rows */
+.data-row { display: flex; justify-content: space-between; margin: 8px 0; font-size: 14px; }
+.value { color: var(--accent); font-weight: bold; }
+
+/* Mobile Adaptations */
+@media (max-width: 768px) {
+    .left { 
+        bottom: 0; top: auto; left: 0; width: 100%; 
+        border-radius: 20px 20px 0 0; transform: translateY(70%);
+    }
+    .left:active, .left:focus-within { transform: translateY(0); } /* Swipe up effect */
+    
+    .right {
+        top: 10px; right: 10px; left: 10px; width: auto;
+        padding: 10px; font-size: 12px; height: auto;
+    }
+    .tagline, .control-section label { display: none; }
+    .nav-grid { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+    button { padding: 8px; font-size: 10px; }
+}
+
+/* UI Elements */
+.logo { font-size: 20px; color: var(--accent); margin: 0; }
+.highlight { color: white; }
+.nav-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
+button {
+    background: rgba(255,255,255,0.05); border: 1px solid #444; color: white;
+    padding: 10px; border-radius: 8px; cursor: pointer;
+}
+button:hover { border-color: var(--accent); background: rgba(0, 242, 255, 0.1); }
+input[type=range] { width: 100%; accent-color: var(--accent); }
+
+#loader {
+    position: fixed; inset: 0; background: black; z-index: 100;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    transition: opacity 0.5s;
+}

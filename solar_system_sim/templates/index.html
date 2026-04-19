@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstroPhysics Lab: 3D Solar System</title>
+    <!-- Modern Scientific Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Link to our CSS -->
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- 1. LOADING SCREEN -->
+    <!-- This covers the screen until the 3D assets are ready -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <h1>INITIALIZING UNIVERSE</h1>
+        <p>Loading Textures & Physics Engine...</p>
+    </div>
+
+    <!-- 2. UI OVERLAY -->
+    <div id="ui">
+        
+        <!-- LEFT PANEL: Controls & Navigation -->
+        <div class="panel left">
+            <h1 class="logo">ASTRO<span class="highlight">LAB</span></h1>
+            <p class="tagline">High School Physics Simulation</p>
+            
+            <div class="control-section">
+                <label>Time Compression</label>
+                <div class="slider-container">
+                    <input type="range" id="timeSlider" min="0" max="10" step="0.1" value="1">
+                    <span id="timeVal">1.0x</span>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <label>Physics Visualizers</label>
+                <button onclick="ui.toggleVector('gravity')" class="btn-toggle">Gravity Vectors</button>
+                <button onclick="ui.toggleVector('velocity')" class="btn-toggle">Velocity Vectors</button>
+                <button onclick="ui.toggleOrbits()" class="btn-toggle">Toggle Orbit Paths</button>
+            </div>
+
+            <div class="control-section">
+                <label>Celestial Navigation</label>
+                <div id="planetNav" class="nav-grid">
+                    <button onclick="focusPlanet('Sun')" class="btn-sun">The Sun</button>
+                    <!-- JavaScript will inject other planet buttons here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: Telemetry & Educational Data -->
+        <div class="panel right telemetry">
+            <h2 id="tel-name">Solar System</h2>
+            <div class="divider"></div>
+            
+            <div class="data-row">
+                <span class="label">Relative Gravity</span>
+                <span id="tel-grav" class="value">--</span>
+            </div>
+            <div class="data-row">
+                <span class="label">Orbit Velocity</span>
+                <span id="tel-vel" class="value">--</span>
+            </div>
+            <div class="data-row">
+                <span class="label">Distance from Sun</span>
+                <span id="tel-dist" class="value">--</span>
+            </div>
+
+            <div class="info-box">
+                <label>Scientific Fact</label>
+                <p id="tel-fact">Select a celestial body to analyze its composition and orbital mechanics.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. THREE.JS CONFIGURATION -->
+    <!-- Import Map allows us to use clean 'import' statements in our JS -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <!-- Our Main Logic -->
+    <script type="module" src="/static/js/main.js"></script>
+
+</body>
+</html>
